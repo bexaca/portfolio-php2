@@ -4,7 +4,6 @@ session_start();
 
 include "php/konekcija.php";
 
-
 $user = $_SESSION['korisnik'];
 
 $user = $_SESSION['korisnik']->uloga;
@@ -15,6 +14,10 @@ $page = "";
 
 if(isset($_GET['page'])){
 	$page = $_GET['page'];
+}
+if ($page === 'login') {
+	session_destroy();
+	header("Location: ../login.php");
 }
 
 switch($page){
@@ -36,9 +39,6 @@ switch($page){
     case "panel":
 		include "panel.php";
 		break;
-	// case "login":
-	// 	include "login.php";
-	// 	break;
 	default:
 		include "login.php";
 		break;

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2018 at 08:21 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Generation Time: Feb 10, 2019 at 07:42 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `login`
+-- Database: `portfolio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about`
+--
+
+CREATE TABLE `about` (
+  `id` int(10) NOT NULL,
+  `about_born` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `about_school` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `about_sports` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `about_image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `about_academy` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `about_hobbies` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `about`
+--
+
+INSERT INTO `about` (`id`, `about_born`, `about_school`, `about_sports`, `about_image`, `about_academy`, `about_hobbies`) VALUES
+(1, 'I was born on 26th of June in 1997 in Aleksinac, Serbia', 'I am curently attending \'Visoka ICT\' school in Belgrade where I am studying internet technologies', 'Voleyball and handball are my favourite sports', 'img/timeline.svg', 'I finished aviation academy in Belgrade', 'My hobbies are music and dogs');
 
 -- --------------------------------------------------------
 
@@ -45,6 +68,32 @@ INSERT INTO `contact` (`id`, `contact_location`, `contact_phone`, `contact_email
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nav_meni`
+--
+
+CREATE TABLE `nav_meni` (
+  `id` int(10) NOT NULL,
+  `admin` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `korisnik` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `izlogovan` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nav_meni`
+--
+
+INSERT INTO `nav_meni` (`id`, `admin`, `korisnik`, `izlogovan`) VALUES
+(1, 'index', 'index', '0'),
+(2, 'skills', 'skills', '0'),
+(3, 'work', 'work', '0'),
+(4, 'about', 'about', '0'),
+(5, 'contact', 'contact', '0'),
+(6, '0', '0', 'login'),
+(7, 'panel', '0', '0');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rezultat`
 --
 
@@ -62,27 +111,7 @@ CREATE TABLE `rezultat` (
 INSERT INTO `rezultat` (`id_rezultat`, `id_ankete`, `id_odgovori`, `rezultat`) VALUES
 (1, 31, 27, 1),
 (2, 31, 28, 0),
-(36, 33, 60, 0),
-(37, 31, 80, 1),
-(38, 31, 80, 1),
-(39, 33, 82, 0),
-(40, 33, 82, 0),
-(41, 33, 82, 0),
-(42, 33, 82, 0),
-(43, 33, 82, 0),
-(44, 33, 82, 0),
-(45, 33, 82, 0),
-(46, 33, 82, 0),
-(47, 33, 82, 0),
-(48, 33, 82, 0),
-(49, 33, 82, 0),
-(50, 33, 82, 0),
-(51, 33, 82, 0),
-(52, 33, 82, 0),
-(53, 33, 82, 0),
-(54, 33, 82, 0),
-(55, 33, 82, 0),
-(56, 33, 82, 0);
+(36, 33, 60, 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +129,7 @@ CREATE TABLE `site_text` (
 --
 
 INSERT INTO `site_text` (`id`, `text`) VALUES
-(1, 'Hi, My Name Is Isidora And I Am Future Freelance Front-End Web Developer');
+(1, 'Hi, My Name Is Isidora And I Am Future Freelance Frontend Developer');
 
 -- --------------------------------------------------------
 
@@ -170,17 +199,30 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `ime`, `prezime`, `email`, `uloga`) VALUES
 (16, 'Isidoraaaaaa', 'hjvjhvjvj', 'Isidoraaaaaaaa', 'Isidoraaaaa', 'Isidora@gmaaaaaaail.com', 'korisnici'),
-(33, 'administrator', 'administrator', '', '', '', 'admin'),
-(35, 'beki', 'beki', 'Aleksandar', 'Beronja', 'bexaca@gmail.com', 'korisnici');
+(33, 'administrator', '200ceb26807d6bf99fd6f4f0d1ca54d4', '', '', '', 'admin'),
+(35, 'beki', '3aa00f6bf44ef9dedba2bdaaefd02941', 'Aleksandar', 'Beronja', 'bexaca@gmail.com', 'korisnici'),
+(42, 'sava', '9cbdac81135e956ea0415a1d201147d9', 'Sava', 'Maric', 'sava@sasa.ca', 'korisnici');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nav_meni`
+--
+ALTER TABLE `nav_meni`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -218,10 +260,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nav_meni`
+--
+ALTER TABLE `nav_meni`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `rezultat`
@@ -245,13 +299,13 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT for table `slika`
 --
 ALTER TABLE `slika`
-  MODIFY `slika_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `slika_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
