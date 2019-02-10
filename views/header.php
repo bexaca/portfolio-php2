@@ -21,6 +21,11 @@ include "php/konekcija.php";
 </head>
 
 <body>
+<div id="preloader">
+        <div id="status">
+            <h1>Loading</h1>
+        </div>
+    </div>
 <header id="header_nav" >
         <span id="hamb" onclick="openNav()"><img src="img/list.svg" alt="hamburger"/></span>
         <div id="myNav" class="overlay">
