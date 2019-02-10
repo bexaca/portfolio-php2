@@ -23,7 +23,7 @@ include "php/konekcija.php";
 <body>
 <div id="preloader">
         <div id="status">
-            <h1>Loading</h1>
+            <h1>Loading...</h1>
         </div>
     </div>
 <header id="header_nav" >
