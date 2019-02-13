@@ -23,7 +23,7 @@ session_start(); //Ova linija koda  je potrebna da bi rad sa sesijama bio moguc.
 			    $stmt->bindParam(":lozinka", $lozinka);
 
 			    $stmt->execute();
-				$user = $stmt->fetch(); // Dohvatanje samo jednog korisnika
+					$user = $stmt->fetch(); // Dohvatanje samo jednog korisnika
 
 			    if($user) {
 					$_SESSION['korisnik'] = $user; //Pravljenje sesije koja kao sadrzaj ima rezultat rada baze podataka

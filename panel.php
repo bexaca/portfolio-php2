@@ -143,6 +143,21 @@ error_reporting(0);
 
 <?php
 
+	include('php/konekcija.php');
+		$poll=$_POST['poll_vote'];
+		$sql="UPDATE anketa SET active=$poll";
+		$stmt=$konekcija->prepare($sql);
+		if($poll == NULL)
+		{
+		}
+		else
+		{
+			$rez = $stmt->execute();
+        }
+?>
+
+<?php
+
 error_reporting(0);
 	include('php/konekcija.php');
 		$skill_id=$_POST['skill_id'];
@@ -369,6 +384,20 @@ error_reporting(0);
 				<input type="submit" name="contact_change" class="sblog btnposalji" value="Change">
 			</form>
 		</div>
+
+		<?php 
+			$anketa="SELECT * FROM anketa";
+			$rezultat = $konekcija->query($anketa)->fetchAll();
+		?>
+
+<form name="poll" action="control.php?page=panel" method="POST">
+				<h1>Poll active</h1>
+				<select name="poll_vote">
+					<option value="1">True</option>
+					<option value="0">False</option>
+				</select>
+				<input type="submit" name="contact_change" class="sblog btnposalji" value="Change">
+			</form>
 
    
    <?php 

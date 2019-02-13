@@ -174,7 +174,7 @@ include "views/header.php";
       //var_dump($greske);
       if(count($greske)==0){
         include ('php/konekcija.php');
-        $upit = "INSERT INTO users VALUES('', :korIme, :lozinka, :ime, :prezime, :email, 'korisnici')";
+        $upit = "INSERT INTO users VALUES('', :korIme, :lozinka, :ime, :prezime, :email, 'korisnici', '0')";
         $izmena=$konekcija->prepare($upit);
         $izmena->bindParam(":korIme",$korIme);
         $izmena->bindParam(":lozinka",$lozinka);
@@ -209,6 +209,5 @@ include "views/header.php";
     </div>
 
 <?php
-        include "views/footer.php";
-     ?>
-
+    include "views/footer.php";
+?>

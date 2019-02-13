@@ -85,6 +85,6 @@ function valLog() {
         $(pass).focus();
         return false;
     }
-
+    window.localStorage.setItem("user", $(user).val());
     return true;
 }

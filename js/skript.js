@@ -76,6 +76,31 @@ function writeText(form) {
 
 if (window.location.href.indexOf('about') !== -1) {
     $.getJSON("https://dog.ceo/api/breeds/image/random", function (result) {
-        $("#dog").append( "<img src=" + result.message + "></img>" );
-        });
-    }
+        $("#dog").append("<img style='max-width: 100%' src=" + result.message + "></img>");
+    });
+}
+
+$(document).on('click', '#yes', function (e) {
+    $.ajax({
+        data: {
+            answer: 'yes',
+            username: window.localStorage.getItem("user")
+        },
+        type: "post",
+        url: "../php/anketa.php",
+        success: function (data) {
+            $("#form").replaceWith( "<h2>Your vote has been recorder, thank you!</h2>" );
+        }
+    });
+});
+
+$(document).on('click', '#no', function (e) {
+    $.ajax({
+        data: { answer: 'no' },
+        type: "post",
+        url: "../php/anketa.php",
+        success: function () {
+            $("#form").replaceWith( "<h2>Your vote has been recorder, thank you!</h2>" );
+        }
+    });
+});
