@@ -55,50 +55,6 @@ error_reporting(0);
         <h1>Here is a random dog, because I love dogs</h1>
     </div>
 
-<?php
-$vote = $_REQUEST['vote'];
-
-//get content of textfile
-$filename = "poll_result.txt";
-$content = file($filename);
-
-//put content in array
-$array = explode("||", $content[0]);
-$yes = $array[0];
-$no = $array[1];
-
-if ($vote == 0) {
-  $yes = $yes + 1;
-}
-if ($vote == 1) {
-  $no = $no + 1;
-}
-
-//insert votes to txt file
-$insertvote = $yes."||".$no;
-$fp = fopen($filename,"w");
-fputs($fp,$insertvote);
-fclose($fp);
-?>
-
-<script>
-function getVote(int) {
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("poll").innerHTML=this.responseText;
-    }
-  }
-  xmlhttp.open("GET","poll_vote.php?vote="+int,true);
-  xmlhttp.send();
-}
-</script>
-
  <?php
         include "views/footer.php";
  ?>

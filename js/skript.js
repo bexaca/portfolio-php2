@@ -96,7 +96,10 @@ $(document).on('click', '#yes', function (e) {
 
 $(document).on('click', '#no', function (e) {
     $.ajax({
-        data: { answer: 'no' },
+        data: { 
+            answer: 'no',
+            username: window.localStorage.getItem("user")
+        },
         type: "post",
         url: "../php/anketa.php",
         success: function () {
