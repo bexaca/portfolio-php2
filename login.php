@@ -173,24 +173,22 @@ include "views/header.php";
       //var_dump($podaci);
       //var_dump($greske);
       if(count($greske)==0){
-        include ('php/konekcija.php');
-        $upit = "INSERT INTO users VALUES('', :korIme, :lozinka, :ime, :prezime, :email, 'korisnici', '0')";
-        $izmena=$konekcija->prepare($upit);
-        $izmena->bindParam(":korIme",$korIme);
-        $izmena->bindParam(":lozinka",$lozinka);
-        $izmena->bindParam(":ime",$ime);
-        $izmena->bindParam(":prezime",$prezime);
-        $izmena->bindParam(":email",$email);
-        $uneto=$izmena->execute();
-        if(!$upit)
+        $sql="INSERT INTO users VALUES(null, :username,:password,:ime,:prezime,:email,'korisnici', 0)";
+		$stmt=$konekcija->prepare($sql);
+		$stmt->bindParam(":username",$korIme);
+		$stmt->bindParam(":password",$lozinka);
+		$stmt->bindParam(":ime",$ime);
+		$stmt->bindParam(":prezime",$prezime);
+		$stmt->bindParam(":email",$email);
+        $rez_upis = $stmt->execute();
+        if(!$rez_upis)
         {
-          echo "Error! ";
+          echo "Error! ".mysql_error();
         }
         else
         {
           echo "<h3>Success!</h3>";
         }
-
 	  }
     else{
       foreach($greske as $g)
